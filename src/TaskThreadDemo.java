@@ -13,7 +13,21 @@ public class TaskThreadDemo {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		//Make some tasks
+		Runnable printA = new PrintChar('w', 100);
+		Runnable printB = new PrintChar('$', 200);
+		Runnable print1 = new PrintNum(400);
+		
+		//Create threads
+		Thread threadA = new Thread(printA);
+		Thread threadB = new Thread(printB);
+		Thread threadC = new Thread(print1);
+		
+		//start them up
+		threadA.start();
+		threadB.start();
+		threadC.start();
 
 	}
 
@@ -48,9 +62,7 @@ class PrintChar implements Runnable{
 
 class PrintNum implements Runnable{
 	
-	private int lastNum;
-	
-	
+	private int lastNum;	
 
 	/**
 	 * @param lastNum
@@ -59,14 +71,10 @@ class PrintNum implements Runnable{
 		this.lastNum = lastNum;
 	}
 
-
-
 	@Override
 	public void run() {
 		for(int i = 1; i <= lastNum; i++) {
 			System.out.printf("%d ",i);
-		}
-		
-	}
-	
+		}		
+	}	
 }
